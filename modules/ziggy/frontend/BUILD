@@ -9,12 +9,13 @@ js_binary(
     data = [
         "//:node_modules/express",
         "//:node_modules/string-replace-middleware",
-    ] + glob(["*.js", "public/*"]),
+    ] + glob([
+        "*.js",
+        "public/*",
+    ]),
     entry_point = "index.js",
     tags = [
         "ibazel_live_reload",
         "ibazel_notify_changes",
     ],
 )
-
-

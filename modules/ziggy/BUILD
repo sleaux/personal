@@ -41,14 +41,15 @@ zig_binary(
 zig_binary(
     name = "lib",
     main = "lib.zig",
+    tags = ["manual"],
     zigopts = ["-fno-entry"],
-    tags = ["manual"]
 )
 
 zig_test(
     name = "lib_test",
     main = "lib.zig",
 )
+
 zig_configure_binary(
     name = "lib_wasm",
     actual = ":lib",
@@ -59,4 +60,3 @@ zig_configure_binary(
         "ReleaseFast",
     ],
 )
-
