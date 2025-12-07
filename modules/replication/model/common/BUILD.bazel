@@ -1,0 +1,7 @@
+load("@rules_p//p:defs.bzl", "p_project")
+
+p_project(
+    name = "network",
+    srcs = ["network.p"],
+    visibility = ["//modules/replication:__subpackages__"],
+)

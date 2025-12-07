@@ -1,3 +1,5 @@
+enum tBroadcast {Unreliable, UnreliableMulti, Reliable, ReliableMajority}
+
 fun Broadcast(broadcast: tBroadcast, machines: set[machine], e: event, payload: any) {
     if (broadcast == Unreliable) {
         BroadcastUnreliable(machines, e, payload);

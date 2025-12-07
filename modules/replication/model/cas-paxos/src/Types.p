@@ -17,7 +17,5 @@ event eChangeRequest: tChangeRequest;
 type tChangeResponse = (proposer: Proposer, value: tState);
 event eChangeResponse: tChangeResponse;
 
-enum tBroadcast {Unreliable, UnreliableMulti, Reliable, ReliableMajority}
-
 type tStore = (value: tState);
 event eStore: tStore;
