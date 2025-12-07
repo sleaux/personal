@@ -36,3 +36,6 @@ p_test(
 
 ## Documentation
 For detailed documentation, see [docs/](./docs)
+
+## Known issues
+* A `p_test` rule that references a `testcase` that does not exist will silently pass.
