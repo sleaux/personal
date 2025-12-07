@@ -5,3 +5,9 @@ p_project(
     srcs = glob(["**/*.p"]),
     deps = ["//modules/replication/model/common:network"],
 )
+
+p_test(
+    name = "basic",
+    model = ":cas-paxos",
+    testcase = "testBasic",
+)
