@@ -1,0 +1,12 @@
+spec HistoryIsLinearizable observes eAcceptRequest {
+
+    start state Init {
+        entry {
+
+        }
+
+        on eAcceptRequest do (payload: tAcceptRequest) {
+            assert(true);
+        }
+    }
+}
