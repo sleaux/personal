@@ -11,7 +11,7 @@ def PProject(ctx):
     out_dir = ctx.actions.declare_directory(ctx.label.name)
     dll = out_dir.short_path + "/PChecker/net8.0/" + ctx.label.name.replace("-", "_") + ".dll"
 
-    sources = ctx.files.srcs
+    sources = list(ctx.files.srcs)
 
     for dep in ctx.attr.deps:
         sources += dep[PProjectCompileInfo].input_files
