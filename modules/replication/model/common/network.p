@@ -1,6 +1,7 @@
 enum tBroadcast {Unreliable, UnreliableMulti, Reliable, ReliableMajority}
 
 fun Broadcast(broadcast: tBroadcast, machines: set[machine], e: event, payload: any) {
+    assert sizeof(machines) > 0;
     if (broadcast == Unreliable) {
         BroadcastUnreliable(machines, e, payload);
         return;
@@ -17,6 +18,7 @@ fun Broadcast(broadcast: tBroadcast, machines: set[machine], e: event, payload: 
         BroadcastReliableMajority(machines, e, payload);
         return;
     }
+    assert false;
 }
 
 // Unreliably send event to every target, either zero or one times.
@@ -48,8 +50,9 @@ fun BroadcastUnreliableMulti(machines: set[machine], e: event, payload: any) {
     }
 }
 
-fun BroadcastReliable (machines: set[machine], e: event, payload: any) {
+fun BroadcastReliable(machines: set[machine], e: event, payload: any) {
     var i: int;
+    i = 0;
     while (i < sizeof(machines)) {
         send machines[i], e, payload;
         i = i + 1;
