@@ -92,4 +92,4 @@ build:windows --sandbox_add_mount_pair=C:\Temp
 
 common --extra_toolchains=//modules/ziggy:wasm32-freestanding-toolchain
 
-import .bazelrc.local
+try-import .bazelrc.local
