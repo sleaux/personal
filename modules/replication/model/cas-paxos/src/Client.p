@@ -4,9 +4,10 @@ machine Client {
     var broadcast: tBroadcast;
 
     start state init {
-        entry(setup: (broadcast: tBroadcast, proposer: Proposer)) {
+        entry(setup: (broadcast: tBroadcast, proposer: Proposer, value: int)) {
             broadcast = setup.broadcast;
             proposer += (setup.proposer);
+            value = setup.value;
             goto Change;
         }
     }

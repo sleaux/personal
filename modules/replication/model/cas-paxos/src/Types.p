@@ -12,7 +12,7 @@ event eAcceptResponse: tAcceptResponse;
 
 type tChangeRequest = (client: Client, value: int);
 event eChangeRequest: tChangeRequest;
-type tChangeResponse = (proposer: Proposer, value: int);
+type tChangeResponse = (proposer: Proposer, client: Client, value: int);
 event eChangeResponse: tChangeResponse;
 
 type tStore = (value: int);

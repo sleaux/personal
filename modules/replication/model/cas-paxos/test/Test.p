@@ -6,10 +6,10 @@ machine Basic {
             var client: Client;
             acceptors += (new Acceptor(Reliable));
             proposer = new Proposer((broadcast = Reliable, acceptors = acceptors));
-            client = new Client((broadcast = Reliable, proposer = proposer));
+            client = new Client((broadcast = Reliable, proposer = proposer, value = 99));
         }
     }
 }
 
 test testBasic [main = Basic]:
-    assert HistoryIsLinearizable in (union CasPaxos, {Basic});
+    assert HistoryIsLinearizable, ChangeSucceeded in (union CasPaxos, {Basic});

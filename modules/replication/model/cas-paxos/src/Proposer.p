@@ -48,7 +48,7 @@ machine Proposer {
                 }
             } else {
                 // Tell client it failed by returning a non-modified state.
-                Broadcast(broadcast, client, eChangeResponse, (proposer = this, value = value));
+                Broadcast(broadcast, client, eChangeResponse, (proposer = this, client = client[0], value = value));
                 goto Wait;
             }
         }
@@ -65,7 +65,7 @@ machine Proposer {
             if (response.value == value) {
                 accept_acks += (response.acceptor);
                 if (sizeof(accept_acks) >= sizeof(acceptors) / 2 + 1) {
-                    Broadcast(broadcast, client, eChangeResponse, (proposer = this, value = value));
+                    Broadcast(broadcast, client, eChangeResponse, (proposer = this, client = client[0], value = value));
                     goto Wait;
                 }
             }
