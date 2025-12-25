@@ -1,5 +1,7 @@
 load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
 
+package(default_visibility = ["//visibility:public"])
+
 alias(
     name = "format",
     actual = "//tools/format:format",
@@ -10,7 +12,6 @@ exports_files(
         ".clang-format",
         ".clang-tidy",
     ],
-    visibility = ["//visibility:public"],
 )
 
 load("@npm//:defs.bzl", "npm_link_all_packages")
