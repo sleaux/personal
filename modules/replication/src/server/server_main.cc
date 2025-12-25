@@ -4,23 +4,20 @@
 #include "absl/base/log_severity.h"
 #include "absl/flags/flag.h"
 #include "absl/flags/parse.h"
-#include "absl/flags/usage.h"
 #include "absl/log/check.h"
 #include "absl/log/globals.h"
 #include "absl/log/initialize.h"
 #include "absl/log/log.h"
-#include "grpc++/grpc++.h"
-#include "modules/replication/proto/caspaxos.grpc.pb.h"
 
 ABSL_FLAG(uint16_t, port, 50051, "Server port for the service");
-
-int32_t state;
 
 using grpc::CallbackServerContext;
 using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
+
+int32_t value;
 
 class ServerImpl final : public caspaxos::Server::CallbackService {
     grpc::ServerUnaryReactor* Change(
@@ -31,7 +28,15 @@ class ServerImpl final : public caspaxos::Server::CallbackService {
             // quickly. Never perform blocking work (e.g., waiting for an event)
             // in such callbacks.
           public:
-            Reactor(const caspaxos::ChangeRequest& point) {
+            Reactor(const caspaxos::ChangeRequest& request,
+                    caspaxos::ChangeResponse& response) {
+                if (request.has_value()) {
+                    // apply the change function to update with new value
+                    value = request.value();
+                } else {
+                    // apply the null change function
+                }
+                response.set_value(value);
                 Finish(grpc::Status::OK);
             }
 
@@ -44,7 +49,7 @@ class ServerImpl final : public caspaxos::Server::CallbackService {
             void OnCancel() override { LOG(ERROR) << "Change cancelled"; }
         };
 
-        return new Reactor(*request);
+        return new Reactor(*request, *response);
     }
 
     grpc::ServerUnaryReactor* Prepare(

@@ -1,6 +1,6 @@
 cc_binary(
     name = "server",
-    srcs = ["main.cc"],
+    srcs = ["server_main.cc"],
     visibility = ["//visibility:public"],
     deps = [
         "//modules/replication/proto:caspaxos_cc",
