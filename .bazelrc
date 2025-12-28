@@ -1,5 +1,4 @@
 #common --keep_going
-common --registry=https://raw.githubusercontent.com/bazelbuild/bazel-central-registry/main/
 test --test_output=errors
 
 coverage --combined_report=lcov
