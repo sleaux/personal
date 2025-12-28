@@ -3,5 +3,6 @@
         "--header-insertion=never",
         "--compile-commands-dir=${workspaceFolder}/ ",
         "--query-driver=**"
-    ]
+    ],
+    "bazel.buildifierExecutable": "bazel-bin/external/buildifier_prebuilt+/buildifier/buildifier"
 }

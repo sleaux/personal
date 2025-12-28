@@ -9,6 +9,7 @@
 #include "absl/log/globals.h"
 #include "absl/log/initialize.h"
 #include "absl/log/log.h"
+#include "grpc++/grpc++.h"
 #include "modules/replication/proto/caspaxos.grpc.pb.h"
 
 ABSL_FLAG(std::string, target, "localhost:50051", "Server address");

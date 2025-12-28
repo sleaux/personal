@@ -3,24 +3,24 @@
 set -e
 
 case "$1" in
-  build)
-    bazel build //...
-    ;;
-  test)
-    bazel test //...
-    ;;
-  coverage)
-    bazel coverage //...
-    genhtml --branch-coverage --output /template/etc/coverage "$(bazel info output_path)/_coverage/_coverage_report.dat"
-    ;;
-  hedron)
-    bazel run @hedron_compile_commands//:refresh_all
-    ;;
-  p)
-    p compile -pp model/template.pproj --outdir model/generated
-    p check model/generated/CSharp/net8.0/template.dll --outdir model/results --testcase tcFoo
-    ;;
-  *)
-    echo "Incorrect verb"
-    ;;
+build)
+	bazel build //...
+	;;
+test)
+	bazel test //...
+	;;
+coverage)
+	bazel coverage //...
+	genhtml --branch-coverage --output /template/etc/coverage "$(bazel info output_path)/_coverage/_coverage_report.dat"
+	;;
+hedron)
+	bazel run @hedron_compile_commands//:refresh_all
+	;;
+p)
+	p compile -pp model/template.pproj --outdir model/generated
+	p check model/generated/CSharp/net8.0/template.dll --outdir model/results --testcase tcFoo
+	;;
+*)
+	echo "Incorrect verb"
+	;;
 esac

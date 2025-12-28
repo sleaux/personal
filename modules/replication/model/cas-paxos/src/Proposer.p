@@ -28,7 +28,7 @@ machine Proposer {
         on eChangeRequest do (request: tChangeRequest) {
             f = request.value;
             client += (request.client);
-            goto Prepare; 
+            goto Prepare;
         }
        
 

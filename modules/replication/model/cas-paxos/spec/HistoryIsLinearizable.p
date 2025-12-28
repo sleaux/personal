@@ -7,7 +7,7 @@ spec HistoryIsLinearizable observes eAcceptRequest, eAcceptResponse {
         }
 
         on eAcceptRequest do (payload: tAcceptRequest) {
-        
+
         }
 
         on eAcceptResponse do (payload: tAcceptResponse) {
@@ -20,6 +20,21 @@ spec HistoryIsLinearizable observes eAcceptRequest, eAcceptResponse {
     }
 
     fun checkHistory(history: map[Acceptor, map[int, int]]): bool {
+        // There must be some total order of the timestamps of every
+        // operation such that:
+        //  - Every operation that was responded to is included in the
+        //    total order.
+        //  - For each change function application that occurs after a response,
+        //    the order of operations in the total order is the same as in
+        //    each nodes.
+        //  - The first successful operation must have its old value be
+        //    the initial value.
+        //  - Each operation that happens directly after another must have
+        //    the prior operations new value match the subsequent operations
+        //    old value.
+        print format("{0}", history);
+
+
         return true;
     }
 }

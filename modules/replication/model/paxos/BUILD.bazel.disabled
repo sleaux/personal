@@ -1,0 +1,31 @@
+load("@rules_p//p:defs.bzl", "p_project", "p_test")
+
+p_project(
+    name = "basic-paxos",
+    srcs = glob(["**/*.p"]),
+    deps = ["//modules/replication/model/common:network"],
+)
+
+p_test(
+    name = "333-reliable",
+    model = ":basic-paxos",
+    testcase = "testBasicPaxos333Reliable",
+)
+
+p_test(
+    name = "333-unreliable",
+    model = ":basic-paxos",
+    testcase = "testBasicPaxos333Unreliable",
+)
+
+p_test(
+    name = "333-reliable-majority",
+    model = ":basic-paxos",
+    testcase = "testBasicPaxos333ReliableMajority",
+)
+
+p_test(
+    name = "333-unreliable-multi",
+    model = ":basic-paxos",
+    testcase = "testBasicPaxos333UnreliableMulti",
+)
