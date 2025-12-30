@@ -13,7 +13,7 @@ else
     echo "Cloning repository to temporary directory..."
     CHECKOUT_DIR=$(mktemp -d)
     pushd $CHECKOUT_DIR > /dev/null
-    git clone --filter=blob:none --no-checkout https://github.com/sleaux/monorepo.git
+    git clone --filter=blob:none --no-checkout https://github.com/sleaux/personal.git
     pushd monorepo > /dev/null
     git sparse-checkout init --cone
     git sparse-checkout set modules/dotfiles
